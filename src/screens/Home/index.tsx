@@ -15,7 +15,7 @@ import {
 } from './styles';
 
 export function Home(){
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
 
   const carData = {

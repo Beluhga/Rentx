@@ -1,7 +1,6 @@
 import React from 'react';
 import { RectButtonProps } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components';
-import { TouchableNativeFeedback } from 'react-native';
 
 
 import {
@@ -11,7 +10,7 @@ import {
 
 
 
-interface Props extends RectButtonProps {
+interface Props {
     title: string;
     color?: string;
     onPress: () => void;
