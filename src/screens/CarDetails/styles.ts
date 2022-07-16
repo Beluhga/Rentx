@@ -50,7 +50,7 @@ export const Brand = styled.Text`
 `;
 export const Name = styled.Text`
     font-family: ${({theme}) => theme.fonts.secondary_500};
-    color: ${({theme}) => theme.colors.text_detail};
+    color: ${({theme}) => theme.colors.title};
     font-size: ${RFValue(25)}px;
 
 `;
@@ -82,7 +82,7 @@ export const About = styled.Text`
     line-height: ${RFValue(25)}px; /* espaço entre as linhas */
 `;
 
-export const Acessories = styled.View`
+export const Accessories = styled.View`
  width: 100%;
 
  flex-direction: row;

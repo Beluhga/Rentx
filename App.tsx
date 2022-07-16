@@ -2,6 +2,7 @@ import React from 'react';
 import theme from './styles/theme';
 import {ThemeProvider} from 'styled-components';
 import { Routes } from './src/routes';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   useFonts,
   Inter_400Regular,
@@ -37,9 +38,11 @@ export default function App() {
   SplashScreen.hideAsync();
 
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <ThemeProvider theme={theme}>
     <Routes />
     </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
 

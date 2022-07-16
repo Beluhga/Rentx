@@ -1,9 +1,8 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
-import { RectButton} from 'react-native-gesture-handler';
 
 
-export const Container = styled(RectButton)`
+export const Container = styled.View`
  flex:1;
  background-color: ${({theme}) => theme.colors.header};
 
@@ -41,5 +40,5 @@ export const Message = styled.Text`
 export const Footer = styled.View`
  width: 100%;
  align-items: center;
- margin: 80px 0;
+ margin: 50px 0;
 `;

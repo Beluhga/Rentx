@@ -18,12 +18,14 @@ import {
 export function SchedulingComplete(){
     const {width} = useWindowDimensions(); /* esse usa dentro da função para nao da erro */
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   function handleConfirm() {
-    navigation.navigate('Home');
+    navigation.navigate('Home')
   }
+
   
+
 return (
  <Container>
     <StatusBar 
