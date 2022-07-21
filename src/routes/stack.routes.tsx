@@ -7,6 +7,7 @@ import {Scheduling} from '../screens/Scheduling';
 import {SchedulingDetails} from '../screens/SchedulingDetails';
 import {SchedulingComplete} from '../screens/SchedulingComplete';
 import {Mycars} from '../screens/Mycars';
+import {Splash} from '../screens/Splash';
 
 
  const {Navigator, Screen } = createNativeStackNavigator();
@@ -14,9 +15,19 @@ import {Mycars} from '../screens/Mycars';
  export function StackRoutes(){
     return(
         <Navigator screenOptions={{ headerShown: false }}>
+
+            <Screen 
+              name="Splash"
+              component={Splash}
+            />
+
             <Screen 
               name="Home"
               component={Home}
+              options={{
+                //Previnir voltar a Splash no IOS
+                gestureEnabled: false,
+              }}
             />
             
             <Screen 

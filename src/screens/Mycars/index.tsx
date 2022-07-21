@@ -7,7 +7,7 @@ import { BackButton } from '../../components/BackButton';
 import { CarDTO } from '../../dtos/CarDTO';
 import { api } from '../../services/api';
 import { Car } from '../../components/Car';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 
 import {
@@ -83,7 +83,7 @@ return (
         </SubTitle>
 
     </Header>
-    { loading ? <Load /> :
+    { loading ? <LoadAnimation /> :
     <Content>
       <Appointments>
         <AppointmentsTitle>Agendamentos Feitos</AppointmentsTitle>

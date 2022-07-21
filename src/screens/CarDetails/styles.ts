@@ -21,13 +21,6 @@ export const CarImages = styled.View`
  margin-top: ${getStatusBarHeight() + 32}px;
 `;
 
-export const Content = styled.ScrollView.attrs({
-    contentContainerStyle: {
-        padding: 24,
-        alignItems: 'center'
-    },
-    showsVerticalScrollIndicator: false
-})``;
 
 export const Details = styled.View`
  width: 100%;
@@ -100,3 +93,30 @@ export const Footer = styled.View`
  padding: 24px 24px ${getBottomSpace() + 24}px;
  
 `;
+
+/*
+
+export const Content = styled.ScrollView.attrs({
+    contentContainerStyle: {
+        padding: 24,
+        alignItems: 'center'
+    },
+    showsVerticalScrollIndicator: false
+})``;
+
+<Content>
+      <Details>
+        <Description>
+          <Brand>{car.brand}</Brand>
+          <Name>{car.name}</Name>
+        </Description>
+...
+</Content>
+------------------------------------------------
+
+
+<CarImages>
+    <ImagemSlider imageUrl={car.photos} />
+    </CarImages>
+
+*/

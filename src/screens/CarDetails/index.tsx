@@ -1,5 +1,16 @@
 import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { StatusBar, StyleSheet } from 'react-native';
+import { useTheme } from 'styled-components'
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+  useAnimatedStyle,
+  Extrapolate,
+  interpolate,
+}from 'react-native-reanimated';
+
 import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { ImagemSlider } from '../../components/ImagemSlider';
@@ -13,7 +24,6 @@ import {
   Container,
   Header,
   CarImages,
-  Content,
   Details,
   Description,
   Brand,
@@ -27,6 +37,7 @@ import {
 
 } from './styles';
 
+
 interface Params {
   car: CarDTO;
 }
@@ -35,6 +46,38 @@ export function CarDetails(){
   const navigation = useNavigation<any>();
   const route = useRoute();
   const { car } = route.params as Params; // tipagem do API
+
+  const theme = useTheme()
+
+  const scrollY = useSharedValue(0); //ANIMANDO O SCROLL
+  // constante para pegar o event de scroll da vertical (y) - ANIMANDO O SCROLL
+  const scrollHandler = useAnimatedScrollHandler(event => {
+    scrollY.value = event.contentOffset.y;
+    console.log(event.contentOffset.y)
+  });
+
+  //ANIMANDO O SCROLL - para fazer desaparecer a parte do carro quando passa o scroll
+  const headerStyleAnimation = useAnimatedStyle(() => {
+    return {
+      height: interpolate(
+        scrollY.value,
+        [0, 200],
+        [200, 70],
+        Extrapolate.CLAMP
+      ),
+    }
+  });
+
+  const sliderCarsStyleAnimation = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(
+        scrollY.value,
+        [0, 150],
+        [1, 0],
+        Extrapolate.CLAMP
+      )
+    }
+  })
 
   function handleConfirmRental() {
     navigation.navigate('Scheduling', {
@@ -48,15 +91,42 @@ export function CarDetails(){
 
 return (
  <Container>
+   <StatusBar 
+    // Para Melhorar o Scroll
+     barStyle={"dark-content"}
+     translucent
+     backgroundColor="transparent"
+   />
+
+  <Animated.View
+    style={[
+      headerStyleAnimation,
+      styles.header,
+      {backgroundColor: theme.colors.background_secondary}
+    ]}
+  >
     <Header>
-        <BackButton onPress={handleBack} />
+        <BackButton onPress={handleBack}  />
     </Header>
 
+    <Animated.View style={sliderCarsStyleAnimation}>
     <CarImages>
     <ImagemSlider imageUrl={car.photos} />
     </CarImages>
+    </Animated.View>
 
-    <Content>
+  </Animated.View>
+
+
+  <Animated.ScrollView
+      contentContainerStyle= { { //ANIMANDO O SCROLL
+        paddingHorizontal: 24,
+        paddingTop: getStatusBarHeight() + 160,
+    }}
+      showsVerticalScrollIndicator={false}
+      onScroll={scrollHandler}
+      scrollEventThrottle={16} // Para Melhorar o Scroll
+    >
       <Details>
         <Description>
           <Brand>{car.brand}</Brand>
@@ -86,8 +156,16 @@ return (
 
       <About>
         {car.about /* descrição do carro*/}
+        {car.about /* descrição do carro*/}
+        {car.about /* descrição do carro*/}
+        {car.about /* descrição do carro*/}
+        {car.about /* descrição do carro*/}
+        {car.about /* descrição do carro*/}
+        {car.about /* descrição do carro*/}
+        {car.about /* descrição do carro*/}
+        {car.about /* descrição do carro*/}
       </About>
-    </Content>
+    </Animated.ScrollView>
 
     <Footer>
       <Button 
@@ -98,3 +176,11 @@ return (
  </Container>
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    position: 'absolute',
+    overflow: 'hidden',
+    zIndex: 1,
+  }
+})

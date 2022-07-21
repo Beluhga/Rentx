@@ -9,10 +9,10 @@ export default {
         text_detail: '#aeaeb3',
         title: '#47474d',
 
-        line: '#ebebef0',
+        line: '#ebebf0',
 
         main: '#dc1637',
-        main_light: '#fdeded',
+        main_light: '#fdedef',
         success: '#03b252',
 
         shape: '#e1e1e8',
