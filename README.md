@@ -17,7 +17,6 @@ A aplicação consiste em um aluguel de carros de varios modelos.
 ## Mobile
 - JS / TypeScript
 - React Native
-- Yupp
 - Lottie
 - Reanimated
 - Axios
