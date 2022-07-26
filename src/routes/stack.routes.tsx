@@ -8,6 +8,11 @@ import {SchedulingDetails} from '../screens/SchedulingDetails';
 import {SchedulingComplete} from '../screens/SchedulingComplete';
 import {Mycars} from '../screens/Mycars';
 import {Splash} from '../screens/Splash';
+import {SignIn} from '../screens/SignIn';
+import {FirstStep} from '../screens/SignUp/FirstStep';
+import {SecondStep} from '../screens/SignUp/SecondStep'
+
+
 
 
  const {Navigator, Screen } = createNativeStackNavigator();
@@ -17,8 +22,17 @@ import {Splash} from '../screens/Splash';
         <Navigator screenOptions={{ headerShown: false }}>
 
             <Screen 
-              name="Splash"
-              component={Splash}
+              name="SignIn"
+              component={SignIn}
+            />
+
+            <Screen 
+              name="FirstStep"
+              component={FirstStep}
+            />
+            <Screen 
+              name="SecondStep"
+              component={SecondStep}
             />
 
             <Screen 

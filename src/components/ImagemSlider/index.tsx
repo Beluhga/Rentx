@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { FlatList, ViewToken } from 'react-native';
 
+import { Bullet } from '../Bullet'
+
 import {
   Container,
   ImageIndexes,
-  ImageIndex,
   CarImageWrapper,
   CarImage,
 } from './styles';
@@ -36,10 +37,10 @@ return (
   { 
    /* função para pecorrer as imagens (as bolinhas) e mostras as bolinhas de acordo com a quantidade de fotos */
     imageUrl.map((_, index) => (
-    <ImageIndex 
-    key={String(index)}
-    active={index === imageIndex} />
-    ))
+        <Bullet 
+          key={String(index)}
+          active={index === imageIndex} />
+      ))
   }
  
  </ImageIndexes>
