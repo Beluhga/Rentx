@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Alert
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { useTheme } from 'styled-components';
+
+import { Confirmation } from '../../Confirmation';
 import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
-import { Input } from '../../../components/Input';
 import {Button} from '../../../components/Button';
+import { PasswordInput } from '../../../components/PasswordInput';
 
 
 import {
@@ -20,16 +24,46 @@ import {
   Form,
   FormTitle
 } from './styles';
-import { PasswordInput } from '../../../components/PasswordInput';
-import { useTheme } from 'styled-components';
 
+interface Params {
+  user: {
+    name:string 
+    email:string 
+    driverLicense: number
+  }
+}
+
+// para Flexibilizar a interface
 export function SecondStep(){
-  const navigation = useNavigation();
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
 
-  const theme = useTheme()
+  const navigation = useNavigation();
+  const route = useRoute();
+  const theme = useTheme();
+
+  const { user } = route.params as Params
 
   function handleBack(){
     navigation.goBack();
+  }
+
+  function handleRegister() {
+    if(!password || !passwordConfirm){
+      return Alert.alert('Informe a senha e a confirmação');
+    }
+
+    if(password != passwordConfirm){
+      return Alert.alert('As senhas não são iguais');
+    }
+
+    // Enviar para API e cadastra
+    //para Flexibilizar a interface
+    navigation.navigate('Confirmation', {
+      nextScreenRoute: 'SignIn',
+      title: 'Conta Criada',
+      message: `Agora é so fazer login\ne aproveitar`
+    });
   }
 return (
   <KeyboardAvoidingView behavior="position" enabled>
@@ -58,10 +92,14 @@ return (
             <PasswordInput 
               iconName='lock'
               placeholder='Senha'
+              onChangeText={setPassword}
+              value={password}
             />
              <PasswordInput 
               iconName='lock'
               placeholder='Repetir Senha'
+              onChangeText={setPasswordConfirm}
+              value={passwordConfirm}
             />
    
    
@@ -70,6 +108,7 @@ return (
         <Button 
           color={theme.colors.success}
           title="Cadastrar"
+          onPress={handleRegister}
         />
 
       </Container>
