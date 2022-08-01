@@ -28,6 +28,7 @@ export function FirstStep(){
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [driverLicense, setDriverLicense] = useState(0);
+
   const navigation = useNavigation();
 
   function handleBack(){

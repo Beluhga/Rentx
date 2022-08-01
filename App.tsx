@@ -19,6 +19,7 @@ import {
 } from '@expo-google-fonts/archivo';
 
 import * as SplashScreen from 'expo-splash-screen';
+import { AppProvider } from './src/hooks';
 
 LogBox.ignoreLogs([
   'ViewPropTypes will be removed from React Native. Migrate to ViewPropTypes exported from \'deprecated-react-native-prop-types\'.'
@@ -44,9 +45,12 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-    <ThemeProvider theme={theme}>
-    <Routes />
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        {/* Para as rotas ter acesso a informações de autenticação */ }
+        <AppProvider>
+          <Routes />
+        </AppProvider>
+      </ThemeProvider>
     </GestureHandlerRootView>
   );
 }

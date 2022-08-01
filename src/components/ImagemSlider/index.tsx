@@ -10,8 +10,12 @@ import {
   CarImage,
 } from './styles';
 
+// exatamente igual ista no CArdDTO - Listando carros do backend
 interface Props {
-    imageUrl:  string[];
+    imageUrl: {
+      id: string;
+      photo: string;
+    }[];
 }
 
 // função para mudar quando o index mudar
@@ -36,9 +40,9 @@ return (
  <ImageIndexes>
   { 
    /* função para pecorrer as imagens (as bolinhas) e mostras as bolinhas de acordo com a quantidade de fotos */
-    imageUrl.map((_, index) => (
+    imageUrl.map((item, index) => ( // exatamente igual ista no CArdDTO - Listando carros do backend
         <Bullet 
-          key={String(index)}
+          key={String(item.id)} // exatamente igual ista no CArdDTO - Listando carros do backend
           active={index === imageIndex} />
       ))
   }
@@ -48,11 +52,11 @@ return (
  <CarImageWrapper>
    <FlatList 
       data={imageUrl}
-      keyExtractor={key => key}
+      keyExtractor={item => item.id} // exatamente igual ista no CArdDTO - Listando carros do backend
       renderItem={({item}) => (
         <CarImageWrapper>
         <CarImage
-          source={{ uri: item}}
+          source={{ uri: item.photo}} // exatamente igual ista no CArdDTO - Listando carros do backend
           resizeMode="contain"
         />
         </CarImageWrapper>

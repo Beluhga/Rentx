@@ -93,7 +93,7 @@ return (
 
       <FlatList
         data={cars}
-        keyExtractor={item => item.id}
+        keyExtractor={item => String(item.id)}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => 
         <CarWrapper>

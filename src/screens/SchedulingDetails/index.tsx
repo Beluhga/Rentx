@@ -64,7 +64,7 @@ export function SchedulingDetails(){
   const { car, dates } = route.params as Params; // tipagem do API
 
   //total de datas  * custo de cada dia
-  const rentTotal = Number(dates.length * car.rent.price)
+  const rentTotal = Number(dates.length * car.price);
 
 
   async function handleConfirm() {
@@ -82,12 +82,10 @@ export function SchedulingDetails(){
       car,
       startDate: format(parseISO(dates[0]), 'dd/MM/yyyy'),
       endDate: format(parseISO(dates[dates.length -1]),'dd/MM/yyyy')
-    });
-
-    api.put(`/schedules_bycars/${car.id}`, {
+    });api.put(`/schedules_bycars/${car.id}`, {
       id: car.id,
       unavailable_dates
-    })
+    })  
     .then(() => { 
       navigation.navigate('Confirmation', {
         nextScreenRoute: 'Home',
@@ -96,8 +94,7 @@ export function SchedulingDetails(){
       })
     })
     .catch(() => {
-
-    Alert.alert('Ñao foi possível confirmar o agendamento.')
+    Alert.alert('Não foi possível confirmar o agendamento.')
     setLoading(false)
 
     })
@@ -134,8 +131,8 @@ return (
         </Description>
 
       <Rent>
-        <Period>{car.rent.period}</Period>
-        <Price>R$ {car.rent.price}</Price>
+        <Period>{car.period}</Period>
+        <Price>R$ {car.price}</Price>
       </Rent>
       </Details>
 
@@ -171,15 +168,15 @@ return (
           />
 
         <DateInfo>
-          <DateTitle>DE</DateTitle>
+          <DateTitle>ATÉ</DateTitle>
           <DateValue>{rentalPeriod.end}</DateValue>
         </DateInfo>
       </RentalPeriod>
 
       <RentalPrice>
-        <RentalPriceLabel>ATÉ</RentalPriceLabel>
+        <RentalPriceLabel>TOTAL</RentalPriceLabel>
         <RentalPriceDetails>
-          <RentalPriceQuota>{`R$ ${car.rent.price} x ${dates.length} diárias`}</RentalPriceQuota>
+          <RentalPriceQuota>{`R$ ${car.price} x ${dates.length} diárias`}</RentalPriceQuota>
           <RentalPriceTotal>{rentTotal}</RentalPriceTotal>
         </RentalPriceDetails>
       </RentalPrice>
@@ -201,3 +198,11 @@ return (
  </Container>
   );
 }
+
+/*await api.post('rentals', {
+      user_id: 1,
+      car_id: car.id,
+      startDate: new Date(dates[0]),
+      endDate: new Date(dates[dates.length -1]),
+      total: rentTotal
+    })*/

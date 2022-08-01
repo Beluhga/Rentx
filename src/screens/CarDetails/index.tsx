@@ -134,8 +134,8 @@ return (
         </Description>
 
       <Rent>
-        <Period>{car.rent.period}</Period>
-        <Price>R$ {car.rent.price}</Price>
+        <Period>{car.period}</Period>
+        <Price>R$ {car.price}</Price>
       </Rent>
       </Details>
 
@@ -156,14 +156,7 @@ return (
 
       <About>
         {car.about /* descrição do carro*/}
-        {car.about /* descrição do carro*/}
-        {car.about /* descrição do carro*/}
-        {car.about /* descrição do carro*/}
-        {car.about /* descrição do carro*/}
-        {car.about /* descrição do carro*/}
-        {car.about /* descrição do carro*/}
-        {car.about /* descrição do carro*/}
-        {car.about /* descrição do carro*/}
+
       </About>
     </Animated.ScrollView>
 

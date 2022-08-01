@@ -7,8 +7,8 @@ import {
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
+import { api } from '../../../services/api';
 
-import { Confirmation } from '../../Confirmation';
 import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
 import {Button} from '../../../components/Button';
@@ -48,7 +48,7 @@ export function SecondStep(){
     navigation.goBack();
   }
 
-  function handleRegister() {
+ async function handleRegister() {
     if(!password || !passwordConfirm){
       return Alert.alert('Informe a senha e a confirmação');
     }
@@ -57,12 +57,25 @@ export function SecondStep(){
       return Alert.alert('As senhas não são iguais');
     }
 
-    // Enviar para API e cadastra
-    //para Flexibilizar a interface
-    navigation.navigate('Confirmation', {
-      nextScreenRoute: 'SignIn',
-      title: 'Conta Criada',
-      message: `Agora é so fazer login\ne aproveitar`
+    // Enviar para API e cadastra ('users' é o nome da rota do backend)
+    //para Flexibilizar a interface 
+    await api.post('/users', {
+      name: user.name,
+      email: user.email,
+      driver_license: user.driverLicense,
+      password
+    })
+    // para quando ter tudo certo enviar as coisas para o API
+    .then(() => {
+      navigation.navigate('Confirmation', {
+        nextScreenRoute: 'SignIn',
+        title: 'Conta Criada',
+        message: `Agora é so fazer login\ne aproveitar`
+      });
+    })
+    .catch((error) => {
+      console.log(error)
+      Alert.alert('Opa', 'Não foi possível cadastrar')
     });
   }
 return (

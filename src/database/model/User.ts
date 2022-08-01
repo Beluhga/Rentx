@@ -1,0 +1,33 @@
+import {Model} from '@nozbe/watermelondb';
+import { field } from '@nozbe/watermelondb/decorators';
+
+class User extends Model {
+    // users é o nome do modelo da tabela do banco de dados
+    static table = 'users'
+
+    @field('user_id')
+    user_id!: string;
+
+    @field('name')
+    name!: string;
+
+    @field('email')
+    email!: string;
+
+    @field('drive_license')
+    drive_license!: string;
+
+    @field('avatar')
+    avatar!: string;
+
+    @field('token')
+    token!: string;
+
+
+
+
+}
+
+export { User}
+
+const user = new User();

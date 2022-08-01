@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import {StatusBar,
@@ -23,12 +23,16 @@ import {
   Footer,
   Form
 } from './styles';
+import { useAuth } from '../../hooks/auth';
+
+import { database } from '../../database'
 
 export function SignIn(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigation = useNavigation();
+  const { signIn } = useAuth();
 
   async function handleSignIn() {
     try{
@@ -39,8 +43,12 @@ export function SignIn(){
         password: Yup.string()
           .required('A senha é obrigatório') 
       });
+
       await schema.validate({email, password})
       Alert.alert('Tudo certo!');
+
+      // email e senha autenticados
+      signIn({email, password});
     }catch(error) {
       if(error instanceof Yup.ValidationError){
         return Alert.alert('Opa', error.message);
@@ -56,6 +64,16 @@ export function SignIn(){
   function handleNewAccount() {
     navigation.navigate('FirstStep');
   }
+
+  useEffect(() => {
+    async function loadData() {
+      const usersCollection = database.get('users');
+      const users = await usersCollection.query().fetch();
+      console.log(users)
+    }
+
+    loadData();
+  },[])
 
 return (
   //Para organizar o teclado com a tela
