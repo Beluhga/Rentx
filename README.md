@@ -49,3 +49,7 @@ yarn api
 ## Autor
 
 Michael Fernando Silva de Albuquerque
+
+## Agradecimento
+
+Rodrigo Gonçalves da rocketseat
