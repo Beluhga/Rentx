@@ -18,6 +18,8 @@ O uso de styled-components auxilia na criação de interfaces bem projetadas e c
 
 Por fim, a integração do Splash melhora a primeira impressão do usuário ao iniciar o aplicativo, apresentando uma tela de carregamento atraente e informativa.
 
+Em resumo, o projeto de aluguel de carros com as tecnologias JS / TypeScript, React Native, Lottie, Reanimated, Axios, Splash e styled-components visa oferecer aos usuários uma plataforma móvel moderna e envolvente para alugar uma variedade de modelos de carros. A combinação dessas tecnologias resulta em uma experiência de usuário amigável, animações cativantes, comunicação eficiente com o servidor e uma aparência visualmente agradável, transformando a tarefa de alugar carros em uma jornada simplificada e agradável para os usuários.
+
 ## Layout mobile
 ![20220720_215522](https://user-images.githubusercontent.com/82901722/180110825-17980de5-8a70-4a6a-b4cd-8dccac629edd.gif)
 ![20220720_221009](https://user-images.githubusercontent.com/82901722/180110813-f7b50bd1-f22d-41ab-9e8e-a3637fb9434c.gif)
